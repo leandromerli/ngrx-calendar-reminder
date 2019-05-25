@@ -1,0 +1,12 @@
+<div class="reminder"
+   [style.background-color]="reminder.color"
+   (click)="viewReminder()"
+>
+ 
+  <div class="shortTitle">
+      <span class="hour">
+          {{reminder.mDate| amDateFormat:'h:mm A'}}
+        </span>  
+        {{ (reminder.title.length>10)? (reminder.title | slice:0:10)+'..':(reminder.title) }}
+  </div>
+</div>

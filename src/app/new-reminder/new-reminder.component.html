@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>Reminder</h2>
+<mat-dialog-content>
+    <form [formGroup]="reminderForm" #formDir="ngForm" >
+
+    <mat-form-field>
+    <input id="title" matInput formControlName="title" placeholder="Title" required >
+    <ng-container  *ngIf="title.invalid && (title.dirty || title.touched)">
+        <mat-error *ngIf="title.errors.required"> Title is required.</mat-error>
+        <mat-error *ngIf="title.errors.maxlength"> Title maximum length is 30.</mat-error>
+    </ng-container>
+   </mat-form-field>
+
+
+    <mat-form-field>
+        <input matInput [matDatepicker]="dp" placeholder="Date" formControlName="mDate"  >
+        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+        <mat-datepicker #dp></mat-datepicker>
+        <mat-error *ngIf="mDate.invalid&&mDate.errors.required"> Date is required.</mat-error>
+      </mat-form-field>
+
+      <time-picker   placeholder="Time" formControlName="time" >
+
+      </time-picker>
+      <mat-form-field>
+          <input id="city" matInput formControlName="city" placeholder="City"  >
+      </mat-form-field>
+  
+      <div class="color-picker-container">
+          <span class="label">Reminder color</span>
+          <input  class="picker"
+          style="border:1px solid grey"
+          [style.background]="color"
+          [colorPicker]="color"
+          (colorPickerChange)="onColorPickerChange($event)" />
+        </div>
+
+      </form>
+</mat-dialog-content>
+<mat-dialog-actions >
+       
+  <button mat-button color="primary"
+        (click)="save()" 
+        [disabled]="reminderForm.invalid">
+    Save
+  </button>
+
+</mat-dialog-actions>

@@ -1,0 +1,28 @@
+<ng-container *ngIf="reminder$ | async; let reminder">
+    <h2 mat-dialog-title>{{reminder.title}}</h2>
+
+  <ng-container *ngIf="weather$ | async; let weather">
+    <ng-container *ngIf="weather.weatherData.rain&&weather.weatherData.rain['1h']">
+        Rain in last hour: {{weather.weatherData.rain['1h']}}
+    </ng-container>
+    <ng-container *ngIf="weather.weatherData.wind&&weather.weatherData.wind.speed">
+      Wind Speed {{weather.weatherData.wind.speed}}
+    </ng-container>
+  </ng-container>
+
+  <p>
+      <b>Reminder date:</b> {{reminder.mDate| amParse:'DD/MM/YYYY hh:mm'}}
+  </p>
+  <p>
+      <b>City:</b> {{reminder.city| titlecase}}
+  </p>
+
+  
+  <mat-dialog-actions >
+        
+    <button mat-button (click)="edit(reminder)">
+      Edit
+    </button>
+
+  </mat-dialog-actions>
+</ng-container>

@@ -1,0 +1,19 @@
+<div *ngIf="day"
+class="day" 
+[class.day-disabled]="day.isPast"
+[class.day-weekend]="day.isWeekend"
+>
+  <div class="cal-cell-top">
+
+    <span class="cal-day-number">
+      {{ day.mDate.date() }}
+    </span>
+  </div>
+  <div class="cal-events" >
+    <app-day-reminder
+      class="cal-event"
+      *ngFor="let reminder of reminders$ | async"
+      [reminder]="reminder">
+    </app-day-reminder>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="calendar-month">
+<div class="month-grid">
+  <div class="day-names">
+    <div *ngFor="let name of dayNames" class="day-name p9">
+      {{ name }}
+    </div>
+  </div>
+  <div class="weeks">
+    <div *ngFor="let week of weeks" class="week">
+      <ng-container *ngFor="let day of week">
+       
+
+          <app-day class="week-date"
+          [day]="day">
+
+          </app-day>
+      
+      </ng-container>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,97 @@
+$dayBase: 90px;
+$cloud:'#ccc';
+$base:5px;
+$concrete:'#fff';
+$seafoam:'blue';
+$white:'#fff';
+$teal:'black';
+$light-blue-grey:'#888';
+$blue:'#2828f7';
+$gray:'#f5f5f5';
+
+.calendar-month {
+  display: block;
+  margin: 0 auto;
+
+
+
+  .month-grid {
+    .day-names {
+      display: flex;
+      flex-direction: row;
+      background: $concrete;
+      border-bottom-right-radius: 3px;
+      border-bottom-left-radius: 3px;
+      background-color: #2828f7;  
+      color: white;
+    }
+    .weeks {
+      display: flex;
+      flex-direction: column;
+    }
+    .week {
+      display: flex;
+      flex-direction: row;
+      height: 80px;
+    }
+    .week-date,
+    .day-name
+    {
+      text-align: center;
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: 0;
+      box-shadow: -1px -1px #808080, inset -1px -1px 0 0 #808080;
+    }
+
+    .week-date {
+      
+      .date-text {
+        z-index: 10;
+        font-size: 10px;
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      &::after {
+        content: '';
+        height: $dayBase * 0.9;
+        width: $dayBase * 0.9;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        transition: background-color 150ms linear, color 150ms linear;
+        z-index: 1;
+      }
+
+      &.enabled {
+        cursor: pointer;
+        &:hover {
+          &:after {
+            background-color: $seafoam;
+          }
+        }
+      }
+      &.selected {
+        color: $white;
+        &:after {
+          background-color: $teal;
+        }
+        &:hover {
+          &:after {
+            background-color: $teal;
+          }
+        }
+      }
+
+      &.disabled {
+        color: $light-blue-grey;
+      }
+    }
+
+    .today {
+      font-weight: bold;
+    }
+  }
+} 
